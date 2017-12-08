@@ -14,6 +14,7 @@ if(  isset($_GET["echostr"]) ){
 else{
     $wechatObj->responseMsg();
 }
+
 class wechatCallbackapiTest
 {
     public function valid()
@@ -192,23 +193,6 @@ $item_str</Articles>
         return $access_token;
     }
 
-    function pushtext($openid,$text){
-
-        $data='{
-			"touser":"'.$openid.'",
-			"msgtype":"text",
-			"text":
-			{
-				"content":"班级消息通知:'.$text.'"
-			}
-		}';
-
-        $access_token = $this->getAccess_token();
-        $url = "https://api.weixin.qq.com/cgi-bin/message/custom/send?access_token=".$access_token;
-        $result = "";
-        $result = $this->https_request2($url,$data);
-        return $result;
-    }
 
 
 
@@ -245,6 +229,31 @@ $item_str</Articles>
         return $result;
 
 
+    }
+
+    function getWeb(){
+        $con = mysqli_connect("localhost","root","UIjf82.fLmwu,9U");
+        if (!$con)
+        {
+            die('Could not connect: ' . mysqli_error());
+        }
+        mysqli_select_db($con, 'som');
+        //解决中文乱码
+        mysqli_query($con, "set character set 'utf8'");
+
+
+        $result = mysqli_query($con , "SELECT * FROM baiduyungx");
+
+        while($row = mysqli_fetch_array($result))
+        {
+            echo $row['title'] . ": " . $row['web'];
+            echo "<br />";
+        }
+
+
+
+        //关闭数据库连接
+        mysqli_close($con);
     }
 
 
