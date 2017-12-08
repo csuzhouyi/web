@@ -232,7 +232,7 @@ $item_str</Articles>
     }
 
     function getWeb(){
-        $con = mysqli_connect("localhost","root","789789789");
+        $con = mysqli_connect("localhost","root","UIjf82.fLmwu,9U");
         if (!$con)
         {
             die('Could not connect: ' . mysqli_error());
