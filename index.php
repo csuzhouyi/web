@@ -87,7 +87,7 @@ class wechatCallbackapiTest
         $openid = $object->FromUserName;
 
 
-        $contentStr = "hello!~";
+        $contentStr = "hello!~\n" . $this->getWeb();
 
 
         $resultStr = $this->transmitText($object, $contentStr, $funcFlag);
@@ -244,16 +244,17 @@ $item_str</Articles>
 
         $result = mysqli_query($con , "SELECT * FROM baiduyungx");
 
+        $contentStr = "";
         while($row = mysqli_fetch_array($result))
         {
-            echo $row['title'] . ": " . $row['web'];
-            echo "<br />";
+            $contentStr += $row['title'] . ": " . $row['web']."\n";
         }
 
 
 
         //关闭数据库连接
         mysqli_close($con);
+        return $contentStr;
     }
 
 
