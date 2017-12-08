@@ -244,7 +244,7 @@ $item_str</Articles>
 
         $result = mysqli_query($con , "SELECT * FROM baiduyungx");
 
-        $contentStr = "";
+        $contentStr = "**";
         while($row = mysqli_fetch_array($result))
         {
             $contentStr += $row['title'] . ": " . $row['web']."\n";
